@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marc Chevallay — OEM Technical Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET & VARS ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #1A2E4A;
+  --steel:   #2E6DA4;
+  --steel-lt:#4A8BC4;
+  --accent:  #E8A020;
+  --accent-lt:#F5C060;
+  --green:   #1A7A3A;
+  --green-lt:#EAF5ED;
+  --gray-dk: #2C3E50;
+  --gray-md: #6B7C93;
+  --gray-lt: #F4F7FB;
+  --white:   #FFFFFF;
+  --border:  #D5E4F0;
+  --font-h:  'Syne', sans-serif;
+  --font-b:  'DM Sans', sans-serif;
+  --radius:  8px;
+  --shadow:  0 2px 20px rgba(26,46,74,.10);
+  --shadow-hover: 0 6px 32px rgba(26,46,74,.18);
+  --transition: 0.28s cubic-bezier(.4,0,.2,1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-b);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--gray-dk);
+  background: var(--gray-lt);
+  min-height: 100vh;
+}
+
+/* ── SCROLLBAR ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--gray-lt); }
+::-webkit-scrollbar-thumb { background: var(--steel); border-radius: 3px; }
+
+/* ── NAV ──────────────────────────────────────────────────────────────────── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(26,46,74,.97);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 54px;
+  box-shadow: 0 2px 16px rgba(0,0,0,.25);
+}
+
+.nav-brand {
+  font-family: var(--font-h);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  letter-spacing: .03em;
+}
+.nav-brand span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 0;
+  list-style: none;
+}
+.nav-links a {
+  display: block;
+  padding: .3rem .85rem;
+  color: rgba(255,255,255,.75);
+  text-decoration: none;
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: color var(--transition), background var(--transition);
+}
+.nav-links a:hover { color: var(--accent); background: rgba(232,160,32,.08); }
+
+.nav-dl {
+  background: var(--accent);
+  color: var(--navy) !important;
+  font-weight: 700 !important;
+  padding: .3rem 1rem !important;
+  border-radius: 4px;
+}
+.nav-dl:hover { background: var(--accent-lt) !important; color: var(--navy) !important; }
+
+/* ── HERO ─────────────────────────────────────────────────────────────────── */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #243E63 60%, #1D3557 100%);
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(232,160,32,.15);
+  border: 1px solid rgba(232,160,32,.4);
+  color: var(--accent);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .25rem .9rem;
+  border-radius: 20px;
+  margin-bottom: 1.2rem;
+}
+.hero h1 {
+  font-family: var(--font-h);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: .6rem;
+  position: relative;
+}
+.hero-title {
+  font-size: clamp(.95rem, 2vw, 1.2rem);
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1.4rem;
+  letter-spacing: .02em;
+}
+.hero-sub {
+  color: rgba(255,255,255,.65);
+  font-size: .9rem;
+  max-width: 540px;
+  margin: 0 auto 2rem;
+}
+.hero-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .6rem;
+  margin-bottom: 2rem;
+}
+.hero-contacts a {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.85);
+  text-decoration: none;
+  padding: .4rem .9rem;
+  border-radius: 6px;
+  font-size: .82rem;
+  transition: background var(--transition), border-color var(--transition);
+}
+.hero-contacts a:hover { background: rgba(255,255,255,.15); border-color: var(--accent); color: var(--white); }
+.hero-contacts .linkedin { border-color: rgba(232,160,32,.4); color: var(--accent); }
+
+/* ── LAYOUT ───────────────────────────────────────────────────────────────── */
+.container { max-width: 1060px; margin: 0 auto; padding: 0 1.5rem; }
+
+main { padding: 3rem 0 4rem; }
+
+.grid { display: grid; grid-template-columns: 1fr 340px; gap: 2rem; align-items: start; }
+
+/* ── CARDS ────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.4rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--transition);
+  border-bottom: 2px solid var(--steel);
+}
+.card-header:hover { background: var(--gray-lt); }
+
+.card-header-left { display: flex; align-items: center; gap: .7rem; }
+
+.section-icon {
+  width: 32px; height: 32px;
+  background: var(--navy);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .95rem;
+  flex-shrink: 0;
+}
+
+.card-header h2 {
+  font-family: var(--font-h);
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.toggle-btn {
+  width: 26px; height: 26px;
+  background: var(--gray-lt);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .75rem;
+  color: var(--steel);
+  transition: transform var(--transition), background var(--transition);
+  flex-shrink: 0;
+}
+.card-header.open .toggle-btn { transform: rotate(180deg); background: var(--steel); color: var(--white); border-color: var(--steel); }
+
+.card-body { padding: 1.4rem; display: block; }
+.card-body.collapsed { display: none; }
+
+/* ── PROFILE ──────────────────────────────────────────────────────────────── */
+.profile-text {
+  line-height: 1.75;
+  color: var(--gray-dk);
+  font-size: .93rem;
+}
+
+/* ── KPI TABLE ────────────────────────────────────────────────────────────── */
+.kpi-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-size: .9rem;
+}
+.kpi-table thead tr { background: var(--navy); color: var(--white); }
+.kpi-table th { padding: .75rem 1.1rem; text-align: left; font-family: var(--font-h); font-size: .8rem; letter-spacing: .05em; font-weight: 600; }
+.kpi-table tbody tr:nth-child(odd) { background: var(--gray-lt); }
+.kpi-table tbody tr:nth-child(even) { background: var(--white); }
+.kpi-table td { padding: .85rem 1.1rem; border-bottom: 1px solid var(--border); }
+.kpi-table td:first-child { font-weight: 600; color: var(--navy); }
+.kpi-up { color: var(--green); font-weight: 700; font-size: 1rem; }
+.kpi-start { color: var(--gray-md); }
+.kpi-result { display: flex; flex-direction: column; gap: .1rem; }
+.kpi-result .main-val { font-size: 1.1rem; font-weight: 700; color: var(--navy); }
+
+/* ── EXPERIENCE ───────────────────────────────────────────────────────────── */
+.exp-item { padding-bottom: 1.4rem; margin-bottom: 1.4rem; border-bottom: 1px solid var(--border); }
+.exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .3rem; flex-wrap: wrap; gap: .3rem; }
+.exp-title { font-family: var(--font-h); font-weight: 700; color: var(--navy); font-size: .97rem; }
+.exp-dates {
+  background: var(--gray-lt);
+  color: var(--steel);
+  font-size: .75rem;
+  font-weight: 600;
+  padding: .2rem .6rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  border: 1px solid var(--border);
+}
+.exp-company { color: var(--steel); font-size: .85rem; margin-bottom: .7rem; font-weight: 500; }
+.exp-bullets { list-style: none; }
+.exp-bullets li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: .88rem;
+  line-height: 1.6;
+  color: var(--gray-dk);
+  margin-bottom: .3rem;
+}
+.exp-bullets li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--steel);
+  font-size: .75rem;
+  top: .12em;
+}
+.tag-oem {
+  display: inline-block;
+  background: rgba(26,122,58,.1);
+  border: 1px solid rgba(26,122,58,.3);
+  color: var(--green);
+  font-size: .72rem;
+  font-weight: 700;
+  padding: .1rem .5rem;
+  border-radius: 3px;
+  margin-left: .3rem;
+  vertical-align: middle;
+  letter-spacing: .04em;
+}
+
+/* ── TRAINING ─────────────────────────────────────────────────────────────── */
+.training-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--border);
+  gap: 1rem;
+}
+.training-item:last-child { border-bottom: none; }
+.training-info { flex: 1; }
+.training-name { font-weight: 600; font-size: .88rem; color: var(--navy); margin-bottom: .1rem; }
+.training-org { font-size: .8rem; color: var(--gray-md); }
+.training-year {
+  background: var(--navy);
+  color: var(--white);
+  font-size: .72rem;
+  font-weight: 700;
+  padding: .15rem .5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  align-self: flex-start;
+  margin-top: .1rem;
+}
+.training-link a {
+  color: var(--steel);
+  text-decoration: none;
+  font-size: .78rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  margin-top: .25rem;
+  transition: color var(--transition);
+}
+.training-link a:hover { color: var(--accent); }
+
+/* ── SIDEBAR ──────────────────────────────────────────────────────────────── */
+.sidebar .card-header { border-bottom-color: var(--accent); }
+
+.skill-group { margin-bottom: 1.1rem; }
+.skill-group:last-child { margin-bottom: 0; }
+.skill-group-title {
+  font-family: var(--font-h);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: .45rem;
+  padding-bottom: .25rem;
+  border-bottom: 1px solid var(--border);
+}
+.skill-tag {
+  display: inline-block;
+  background: var(--gray-lt);
+  border: 1px solid var(--border);
+  color: var(--gray-dk);
+  font-size: .78rem;
+  padding: .2rem .6rem;
+  border-radius: 4px;
+  margin: .2rem .15rem .2rem 0;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.skill-tag:hover { background: var(--steel); color: var(--white); border-color: var(--steel); }
+.skill-tag.primary { background: rgba(46,109,164,.1); border-color: rgba(46,109,164,.35); color: var(--steel); font-weight: 600; }
+
+.info-row { display: flex; justify-content: space-between; padding: .4rem 0; border-bottom: 1px solid var(--border); font-size: .85rem; }
+.info-row:last-child { border-bottom: none; }
+.info-label { color: var(--gray-md); font-size: .8rem; }
+.info-val { font-weight: 500; color: var(--navy); text-align: right; }
+
+.lang-row { display: flex; align-items: center; gap: .8rem; padding: .5rem 0; border-bottom: 1px solid var(--border); }
+.lang-row:last-child { border-bottom: none; }
+.lang-name { font-weight: 600; font-size: .88rem; min-width: 70px; }
+.lang-level { font-size: .78rem; color: var(--gray-md); flex: 1; }
+.lang-dots { display: flex; gap: 3px; }
+.lang-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+.lang-dot.filled { background: var(--steel); }
+
+.interest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.interest-item {
+  display: flex; align-items: center; gap: .5rem;
+  background: var(--gray-lt); border: 1px solid var(--border);
+  border-radius: 6px; padding: .5rem .7rem;
+  font-size: .82rem; color: var(--gray-dk);
+}
+
+/* ── DOCUMENTS ────────────────────────────────────────────────────────────── */
+.doc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.doc-item {
+  display: flex; align-items: center; gap: .7rem;
+  background: var(--gray-lt); border: 1px solid var(--border);
+  border-radius: 6px; padding: .75rem;
+  text-decoration: none; color: var(--gray-dk);
+  transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
+  font-size: .83rem;
+}
+.doc-item:hover { box-shadow: var(--shadow-hover); border-color: var(--steel); transform: translateY(-1px); color: var(--navy); }
+.doc-icon { font-size: 1.4rem; flex-shrink: 0; }
+.doc-info .doc-name { font-weight: 600; font-size: .85rem; color: var(--navy); }
+.doc-info .doc-type { font-size: .75rem; color: var(--gray-md); margin-top: .05rem; }
+
+/* ── CHARTS ───────────────────────────────────────────────────────────────── */
+.chart-area {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+}
+.chart-box {
+  background: var(--gray-lt); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.2rem;
+  text-align: center;
+}
+.chart-box h3 { font-family: var(--font-h); font-size: .8rem; font-weight: 700; color: var(--steel); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 1rem; }
+
+.bar-chart { display: flex; align-items: flex-end; justify-content: center; gap: 1.2rem; height: 120px; margin-bottom: .7rem; }
+.bar-group { display: flex; flex-direction: column; align-items: center; gap: .3rem; }
+.bar-wrap { display: flex; align-items: flex-end; height: 100px; }
+.bar {
+  width: 32px; border-radius: 4px 4px 0 0;
+  position: relative; display: flex; align-items: flex-start; justify-content: center;
+  font-size: .7rem; font-weight: 700; color: var(--white); padding-top: .2rem;
+  transition: opacity .2s;
+}
+.bar.start { background: rgba(107,124,147,.5); height: 20%; }
+.bar.result { background: linear-gradient(180deg, var(--steel-lt), var(--steel)); height: 100%; }
+.bar-label { font-size: .72rem; color: var(--gray-md); font-weight: 500; }
+
+.p75-bars { display: flex; flex-direction: column; gap: .6rem; justify-content: center; height: 100px; }
+.p75-row { display: grid; grid-template-columns: 55px 1fr 45px; align-items: center; gap: .5rem; }
+.p75-label { font-size: .72rem; font-weight: 600; color: var(--gray-md); text-align: right; }
+.p75-track { background: var(--border); border-radius: 4px; height: 12px; overflow: hidden; }
+.p75-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
+.p75-fill.start { background: rgba(107,124,147,.5); width: 100%; }
+.p75-fill.result { background: linear-gradient(90deg, var(--green), #2ECC71); width: 15.2%; }
+.p75-val { font-size: .75rem; font-weight: 700; text-align: left; }
+.p75-val.start { color: var(--gray-md); }
+.p75-val.end { color: var(--green); }
+
+.chart-caption { font-size: .75rem; color: var(--gray-md); margin-top: .3rem; }
+.chart-gain { font-size: 1.1rem; font-weight: 800; color: var(--green); display: block; margin-top: .2rem; }
+
+/* ── FOOTER ───────────────────────────────────────────────────────────────── */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,.55);
+  text-align: center;
+  padding: 1.8rem;
+  font-size: .8rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+
+/* ── ANIMATIONS ───────────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card { animation: fadeUp .45s ease both; }
+.card:nth-child(1) { animation-delay: .05s; }
+.card:nth-child(2) { animation-delay: .12s; }
+.card:nth-child(3) { animation-delay: .19s; }
+.card:nth-child(4) { animation-delay: .26s; }
+.card:nth-child(5) { animation-delay: .33s; }
+
+/* ── RESPONSIVE ───────────────────────────────────────────────────────────── */
+@media (max-width: 800px) {
+  .grid { grid-template-columns: 1fr; }
+  .doc-grid { grid-template-columns: 1fr; }
+  .chart-area { grid-template-columns: 1fr; }
+  .interest-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Marc <span>Chevallay</span></div>
+  <ul class="nav-links">
+    <li><a href="#profile">Profile</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#training">Training</a></li>
+    <li><a href="#documents">Documents</a></li>
+    <li><a href="CV_Marc_Chevallay_FR.pdf" class="nav-dl" download>⬇ Download CV</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">30+ Years · Parker Hannifin · Hydraulic Systems</div>
+  <h1>Marc Chevallay</h1>
+  <p class="hero-title">OEM Technical Specialist &amp; Quotation Engineer</p>
+  <p class="hero-sub">Hydraulic connection expert — flexible hoses, fittings and systems. PPAP specialist for Caterpillar &amp; Volvo. Haute-Savoie, France.</p>
+  <div class="hero-contacts">
+    <a href="mailto:chevallay.marc@orange.fr">✉ chevallay.marc@orange.fr</a>
+    <a href="tel:+33614749510">📞 +33 6 14 74 95 10</a>
+    <a href="https://www.linkedin.com/in/marc-chevallay-472b9741/" target="_blank" class="linkedin">🔗 LinkedIn Profile</a>
+    <a href="CV_Marc_Chevallay_FR.pdf" download>⬇ Download CV (PDF)</a>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+<div class="container">
+<div class="grid">
+
+<!-- LEFT COLUMN -->
+<div class="main-col">
+
+  <!-- PROFILE -->
+  <div class="card" id="profile">
+    <div class="card-header open" onclick="toggle(this)">
+      <div class="card-header-left">
+        <div class="section-icon">👤</div>
+        <h2>Professional Profile</h2>
+      </div>
+      <div class="toggle-btn">▼</div>
+    </div>
+    <div class="card-body">
+      <p class="profile-text">
+        With over 30 years of experience at Parker Hannifin, I have built comprehensive expertise across the full hydraulic connection value chain — from hands-on manufacturing through to advanced technical support and complex project quotation. A recognised technical contact for both field sales engineers and OEM clients, I combine deep product knowledge, analytical rigour and a strong service mindset.<br><br>
+        PPAP specialist for the <strong>Caterpillar</strong> account, I have maintained a <strong>100% on-time PPAP delivery rate</strong> over two years of activity. Continuously curious, I actively integrate digital tools and artificial intelligence into my working practices.
+      </p>
+    </div>
+  </div>
+
+  <!-- KEY RESULTS -->
+  <div class="card" id="results">
+    <div class="card-header open" onclick="toggle(this)">
+      <div class="card-header-left">
+        <div class="section-icon">📈</div>
+        <h2>Key Results</h2>
+      </div>
+      <div class="toggle-btn">▼</div>
+    </div>
+    <div class="card-body">
+      <table class="kpi-table">
+        <thead>
+          <tr>
+            <th>Indicator</th>
+            <th>Baseline (FY18)</th>
+            <th>Result (FY23)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Win Rate<br><small style="color:var(--gray-md);font-weight:400">Quote conversion rate</small></td>
+            <td class="kpi-start">12 %</td>
+            <td>
+              <div class="kpi-result">
+                <span class="main-val">58 %</span>
+                <span class="kpi-up">▲ +383 %</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>P75 Lead Time<br><small style="color:var(--gray-md);font-weight:400">Quotation turnaround</small></td>
+            <td class="kpi-start">163.8 h</td>
+            <td>
+              <div class="kpi-result">
+                <span class="main-val">24.9 h</span>
+                <span class="kpi-up">▼ −85 %</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="chart-area" style="margin-top:1.4rem">
+        <div class="chart-box">
+          <h3>Win Rate Evolution</h3>
+          <div class="bar-chart">
+            <div class="bar-group">
+              <div class="bar-wrap"><div class="bar start">12%</div></div>
+              <span class="bar-label">FY18</span>
+            </div>
+            <div class="bar-group">
+              <div class="bar-wrap"><div class="bar result">58%</div></div>
+              <span class="bar-label">FY23</span>
+            </div>
+          </div>
+          <p class="chart-caption">Quote conversion rate</p>
+          <span class="chart-gain">+383 %</span>
+        </div>
+        <div class="chart-box">
+          <h3>P75 Lead Time</h3>
+          <div class="p75-bars">
+            <div class="p75-row">
+              <span class="p75-label">FY18</span>
+              <div class="p75-track"><div class="p75-fill start"></div></div>
+              <span class="p75-val start">163.8 h</span>
+            </div>
+            <div class="p75-row">
+              <span class="p75-label">FY23</span>
+              <div class="p75-track"><div class="p75-fill result"></div></div>
+              <span class="p75-val end">24.9 h</span>
+            </div>
+          </div>
+          <p class="chart-caption">Quotation turnaround (hours)</p>
+          <span class="chart-gain">−85 %</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="card" id="experience">
+    <div class="card-header open" onclick="toggle(this)">
+      <div class="card-header-left">
+        <div class="section-icon">💼</div>
+        <h2>Professional Experience</h2>
+      </div>
+      <div class="toggle-btn">▼</div>
+    </div>
+    <div class="card-body">
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">OEM Technical Specialist &amp; Quotation Engineer</span>
+          <span class="exp-dates">June 2013 → Present</span>
+        </div>
+        <div class="exp-company">Parker Hannifin France SAS — Sales Company France · Contamine-sur-Arve (74)</div>
+        <ul class="exp-bullets">
+          <li>Quotation and offer preparation for flexible hoses, fittings and hydraulic systems — direct interface with field sales engineers and OEM clients.</li>
+          <li>Advanced technical support to sales engineers on high-value or technically complex projects.</li>
+          <li>PPAP specialist — accounts <strong>Caterpillar</strong><span class="tag-oem">OEM</span> and <strong>Volvo</strong><span class="tag-oem">OEM</span> : <strong>100% on-time PPAP delivery</strong> over 2 years (Caterpillar).</li>
+          <li>Management of inbound Parker Leads (parker.france@parker.com): qualification, distributor routing, cross-department coordination.</li>
+          <li>Pricing consistency in line with Strategic Pricing; contribution to continuous improvement projects (PPP).</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Project Estimator — Technical Quotation</span>
+          <span class="exp-dates">March 2006 → May 2013</span>
+        </div>
+        <div class="exp-company">Parker Hannifin Manufacturing France SAS · Contamine-sur-Arve (74)</div>
+        <ul class="exp-bullets">
+          <li>Quotation of flexible hose assemblies and kits; feasibility verification; manufacturing documentation.</li>
+          <li>Interface with Procurement for article creation in JD Edwards ERP.</li>
+          <li>Price/margin advisory to sales engineers; technical support on high-potential projects.</li>
+          <li>Standardisation of drawings — Structure Inventor; tracking of offers via win rate and conversion metrics.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Tech Services Technician — Hydraulics</span>
+          <span class="exp-dates">June 2003 → Feb. 2006</span>
+        </div>
+        <div class="exp-company">Parker Hannifin Manufacturing France SAS · Ville-la-Grand (74)</div>
+        <ul class="exp-bullets">
+          <li>Manufacture of prototype connection elements (hoses, fittings, tubes) from client specifications and drawings.</li>
+          <li>Hydraulic mock-ups on equipment — on Parker site and at customer premises. Workshop management.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Setter / Assembler — Hydraulic Hoses</span>
+          <span class="exp-dates">Dec. 1996 → May 2003</span>
+        </div>
+        <div class="exp-company">Parker Hannifin Manufacturing France SAS · Ville-la-Grand (74)</div>
+        <ul class="exp-bullets">
+          <li>Manufacture and quality inspection of hydraulic hose assemblies; training and supervision of temporary operators.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Machine Operator — Forge / Transfer Machine</span>
+          <span class="exp-dates">Sept. 1994 → Nov. 1996</span>
+        </div>
+        <div class="exp-company">Parker Hannifin Manufacturing France SAS · Ville-la-Grand (74)</div>
+        <ul class="exp-bullets">
+          <li>Hot forming and machining of pneumatic fittings. Permanent contract (CDI) from July 1995.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Various Industrial Roles</span>
+          <span class="exp-dates">Up to 1994</span>
+        </div>
+        <div class="exp-company">Various employers · Haute-Savoie (74)</div>
+        <ul class="exp-bullets">
+          <li>Temporary assignments in the industrial sector.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TRAINING -->
+  <div class="card" id="training">
+    <div class="card-header open" onclick="toggle(this)">
+      <div class="card-header-left">
+        <div class="section-icon">🎓</div>
+        <h2>Education &amp; Training</h2>
+      </div>
+      <div class="toggle-btn">▼</div>
+    </div>
+    <div class="card-body">
+
+      <div class="training-item">
+        <div class="training-info">
+          <div class="training-name">BEP — Automotive Vehicle Maintenance</div>
+          <div class="training-org">Lycée d'Enseignement Professionnel, Thonon-les-Bains</div>
+          <div class="training-link">
+            <a href="#documents">📎 View certificate →</a>
+          </div>
+        </div>
+        <div class="training-year">1989–1992</div>
+      </div>
+
+      <div class="training-item">
+        <div class="training-info">
+          <div class="training-name">Sales Techniques — Cegos Certification</div>
+          <div class="training-org">Cegos · 7 BtoB Selling Reflexes</div>
+        </div>
+        <div class="training-year">Oct. 2021</div>
+      </div>
+
+      <div class="training-item">
+        <div class="training-info">
+          <div class="training-name">Project Management Certification — Role of the Project Manager</div>
+          <div class="training-org">Stéphanie Delpeyroux (online course)</div>
+          <div class="training-link">
+            <a href="#documents">📎 View certificate →</a>
+          </div>
+        </div>
+        <div class="training-year">Jan. 2022</div>
+      </div>
+
+      <div class="training-item">
+        <div class="training-info">
+          <div class="training-name">MS Project — Core &amp; Advanced</div>
+          <div class="training-org">Groupe Si2A, Annecy</div>
+        </div>
+        <div class="training-year">Apr. 2022</div>
+      </div>
+
+      <div class="training-item">
+        <div class="training-info">
+          <div class="training-name">Artificial Intelligence — Professional Development</div>
+          <div class="training-org">Continuing professional education</div>
+        </div>
+        <div class="training-year">2024</div>
+      </div>
+
+      <div class="training-item">
+        <div class="training-info">
+          <div class="training-name">PowerPoint Advanced</div>
+          <div class="training-org">Continuing professional education</div>
+        </div>
+        <div class="training-year">June 2025</div>
+      </div>
+
+      <div class="training-item">
+        <div class="training-info">
+          <div class="training-name">Foundational Data Protection Training</div>
+          <div class="training-org">Parker Hannifin — internal certification</div>
+          <div class="training-link">
+            <a href="#documents">📎 View certificate →</a>
+          </div>
+        </div>
+        <div class="training-year">Aug. 2023</div>
+      </div>
+
+      <div class="training-item">
+        <div class="training-info">
+          <div class="training-name">Global Code of Business Conduct Training</div>
+          <div class="training-org">Parker Hannifin — internal certification</div>
+          <div class="training-link">
+            <a href="#documents">📎 View certificate →</a>
+          </div>
+        </div>
+        <div class="training-year">Aug. 2023</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DOCUMENTS -->
+  <div class="card" id="documents">
+    <div class="card-header open" onclick="toggle(this)">
+      <div class="card-header-left">
+        <div class="section-icon">📁</div>
+        <h2>Official Documents</h2>
+      </div>
+      <div class="toggle-btn">▼</div>
+    </div>
+    <div class="card-body">
+      <p style="font-size:.83rem;color:var(--gray-md);margin-bottom:1rem">All documents listed below are official. Click to open.</p>
+      <div class="doc-grid">
+        <a href="CV_Marc_Chevallay_FR.pdf" class="doc-item" download>
+          <span class="doc-icon">📄</span>
+          <div class="doc-info">
+            <div class="doc-name">Full CV (French)</div>
+            <div class="doc-type">PDF — Download</div>
+          </div>
+        </a>
+        <a href="docs/BEP_certificate.pdf" class="doc-item" target="_blank">
+          <span class="doc-icon">🎓</span>
+          <div class="doc-info">
+            <div class="doc-name">BEP — Automotive Maintenance</div>
+            <div class="doc-type">Official diploma · 1992</div>
+          </div>
+        </a>
+        <a href="docs/CertificatGestiondeprojetlerleduchefdeprojetMarcChevallay.pdf" class="doc-item" target="_blank">
+          <span class="doc-icon">📋</span>
+          <div class="doc-info">
+            <div class="doc-name">Project Management Certificate</div>
+            <div class="doc-type">Certification · Jan. 2022</div>
+          </div>
+        </a>
+        <a href="docs/codeethiqueMChevallay.pdf" class="doc-item" target="_blank">
+          <span class="doc-icon">✅</span>
+          <div class="doc-info">
+            <div class="doc-name">Code of Business Conduct</div>
+            <div class="doc-type">Parker Hannifin · Aug. 2023</div>
+          </div>
+        </a>
+        <a href="docs/data_protection.pdf" class="doc-item" target="_blank">
+          <span class="doc-icon">🔒</span>
+          <div class="doc-info">
+            <div class="doc-name">Data Protection Training</div>
+            <div class="doc-type">Parker Hannifin · Aug. 2023</div>
+          </div>
+        </a>
+        <a href="docs/Calcul_Win_Rate.xlsx" class="doc-item" target="_blank">
+          <span class="doc-icon">📊</span>
+          <div class="doc-info">
+            <div class="doc-name">Win Rate Calculation</div>
+            <div class="doc-type">Excel workbook · FY18–FY23</div>
+          </div>
+        </a>
+        <a href="docs/Calcul_P75.xlsx" class="doc-item" target="_blank">
+          <span class="doc-icon">⏱</span>
+          <div class="doc-info">
+            <div class="doc-name">P75 Lead Time Analysis</div>
+            <div class="doc-type">Excel workbook · FY18–FY23</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/marc-chevallay-472b9741/" class="doc-item" target="_blank">
+          <span class="doc-icon">🔗</span>
+          <div class="doc-info">
+            <div class="doc-name">LinkedIn Profile</div>
+            <div class="doc-type">Professional network</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main-col -->
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="card">
+    <div class="card-header open" onclick="toggle(this)">
+      <div class="card-header-left">
+        <div class="section-icon">⚙️</div>
+        <h2>Technical Skills</h2>
+      </div>
+      <div class="toggle-btn">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="skill-group">
+        <div class="skill-group-title">Hydraulic Expertise</div>
+        <span class="skill-tag primary">Flexible hose systems</span>
+        <span class="skill-tag primary">Fittings & connectors</span>
+        <span class="skill-tag primary">PPAP</span>
+        <span class="skill-tag">OEM projects</span>
+        <span class="skill-tag">Hydraulic mock-ups</span>
+        <span class="skill-tag">Prototyping</span>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Quotation & Projects</div>
+        <span class="skill-tag primary">Technical quotation</span>
+        <span class="skill-tag primary">Project management</span>
+        <span class="skill-tag">Value analysis</span>
+        <span class="skill-tag">Strategic pricing</span>
+        <span class="skill-tag">Win rate tracking</span>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Tools & Software</div>
+        <span class="skill-tag">JD Edwards (JDE)</span>
+        <span class="skill-tag">MS Project</span>
+        <span class="skill-tag">Structure Inventor</span>
+        <span class="skill-tag">Excel</span>
+        <span class="skill-tag">PowerPoint</span>
+        <span class="skill-tag">AI tools</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header open" onclick="toggle(this)">
+      <div class="card-header-left">
+        <div class="section-icon">🌍</div>
+        <h2>Languages</h2>
+      </div>
+      <div class="toggle-btn">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="lang-row">
+        <span class="lang-name">French</span>
+        <span class="lang-level">Native</span>
+        <div class="lang-dots">
+          <div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+          <div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+        </div>
+      </div>
+      <div class="lang-row">
+        <span class="lang-name">English</span>
+        <span class="lang-level">Intermediate (written & spoken)</span>
+        <div class="lang-dots">
+          <div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+          <div class="lang-dot filled"></div><div class="lang-dot"></div><div class="lang-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header open" onclick="toggle(this)">
+      <div class="card-header-left">
+        <div class="section-icon">ℹ️</div>
+        <h2>Personal Info</h2>
+      </div>
+      <div class="toggle-btn">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="info-row"><span class="info-label">Location</span><span class="info-val">Mieussy, 74 (France)</span></div>
+      <div class="info-row"><span class="info-label">Born</span><span class="info-val">29 March 1973</span></div>
+      <div class="info-row"><span class="info-label">Driving licence</span><span class="info-val">Category B</span></div>
+      <div class="info-row"><span class="info-label">Mobility</span><span class="info-val">Haute-Savoie &amp; surroundings</span></div>
+      <div class="info-row"><span class="info-label">Family</span><span class="info-val">Father &amp; grandfather</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header open" onclick="toggle(this)">
+      <div class="card-header-left">
+        <div class="section-icon">🏔</div>
+        <h2>Interests</h2>
+      </div>
+      <div class="toggle-btn">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="interest-grid">
+        <div class="interest-item">🏔 Mountain hiking</div>
+        <div class="interest-item">🎿 Ski touring</div>
+        <div class="interest-item">⛷ Nordic skiing</div>
+        <div class="interest-item">📷 Photography</div>
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+</div><!-- /grid -->
+</div><!-- /container -->
+</main>
+
+<footer>
+  <p>Marc Chevallay · Mieussy, Haute-Savoie · <a href="mailto:chevallay.marc@orange.fr">chevallay.marc@orange.fr</a> · <a href="https://www.linkedin.com/in/marc-chevallay-472b9741/" target="_blank">LinkedIn</a></p>
+  <p style="margin-top:.4rem;font-size:.73rem">Hosted on GitHub Pages</p>
+</footer>
+
+<script>
+function toggle(header) {
+  header.classList.toggle('open');
+  const body = header.nextElementSibling;
+  body.classList.toggle('collapsed');
+}
+</script>
+
+</body>
+</html>
