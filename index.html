@@ -10,23 +10,62 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --navy:    #1A2E4A;
-  --steel:   #2E6DA4;
-  --steel-lt:#4A8BC4;
-  --accent:  #E8A020;
-  --accent-lt:#F5C060;
-  --green:   #1A7A3A;
-  --gray-dk: #2C3E50;
-  --gray-md: #6B7C93;
-  --gray-lt: #F4F7FB;
-  --white:   #FFFFFF;
-  --border:  #D5E4F0;
-  --font-h:  'Syne', sans-serif;
-  --font-b:  'DM Sans', sans-serif;
-  --radius:  8px;
-  --shadow:  0 2px 20px rgba(26,46,74,.10);
-  --shadow-hover: 0 6px 32px rgba(26,46,74,.18);
-  --transition: 0.28s cubic-bezier(.4,0,.2,1);
+    /* Vos couleurs officielles Parker Hannifin */
+    --primary-color: #003463;     /* Bleu foncé Parker (Idéal pour la Sidebar et les titres forts) */
+    --secondary-color: #2c3e50;   /* Couleur de texte standard textuelle */
+    --accent-color: #0082c4;      /* Bleu clair Parker (Idéal pour les icônes et la timeline) */
+    --parker-yellow: #fdbd13;     /* Jaune Parker (Pour les boutons et les surbrillances) */
+    --text-color: #334155;        /* Gris doux pour le confort de lecture du texte */
+    --light-bg: #f8fafc;          /* Fond de boîte ultra-léger pour le module Results */
+    --sidebar-width: 280px;
+}
+
+/* Application des couleurs sur les éléments de votre structure d'origine */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    display: flex;
+    min-height: 100vh;
+    background-color: #f1f5f9; /* Fond général du site pour faire ressortir vos modules blancs */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Votre barre latérale aux couleurs corporatives */
+.sidebar {
+    background-color: var(--primary-color) !important; /* Force le Bleu foncé Parker */
+}
+
+/* Votre bouton de téléchargement aux couleurs Parker */
+.download-btn {
+    background-color: var(--accent-color); /* Bleu clair Parker par défaut */
+    color: white;
+    padding: 0.8rem 1.6rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Changement de couleur dynamique au survol avec le Jaune Parker */
+.download-btn:hover {
+    background-color: var(--parker-yellow);
+    color: var(--primary-color); /* Le texte passe en bleu foncé pour rester parfaitement lisible sur le jaune */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Optionnel : La boîte de surbrillance du module Results */
+.highlight-box {
+    background-color: #f8fafc;
+    border-left: 4px solid var(--parker-yellow); /* Rappel subtil du Jaune Parker sur le bord gauche */
+    padding: 1.5rem;
+    border-radius: 0 8px 8px 0;
 }
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-b); font-size: 15px; line-height: 1.65; color: var(--gray-dk); background: var(--gray-lt); min-height: 100vh; }
