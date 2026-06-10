@@ -11,61 +11,165 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
     /* Vos couleurs officielles Parker Hannifin */
-    --primary-color: #003463;     /* Bleu foncé Parker (Idéal pour la Sidebar et les titres forts) */
-    --secondary-color: #2c3e50;   /* Couleur de texte standard textuelle */
-    --accent-color: #0082c4;      /* Bleu clair Parker (Idéal pour les icônes et la timeline) */
-    --parker-yellow: #fdbd13;     /* Jaune Parker (Pour les boutons et les surbrillances) */
-    --text-color: #334155;        /* Gris doux pour le confort de lecture du texte */
-    --light-bg: #f8fafc;          /* Fond de boîte ultra-léger pour le module Results */
+    --primary-color: #003463;     /* Bleu foncé Parker */
+    --secondary-color: #334155;   /* Gris de texte secondaire */
+    --accent-color: #0082c4;      /* Bleu clair Parker */
+    --parker-yellow: #fdbd13;     /* Jaune Parker */
+    --text-color: #334155;        /* Gris confort de lecture */
+    --light-bg: #f8fafc;          
     --sidebar-width: 280px;
 }
-
-/* Application des couleurs sur les éléments de votre structure d'origine */
 
 body {
     font-family: 'Poppins', sans-serif;
     color: var(--text-color);
     display: flex;
     min-height: 100vh;
-    background-color: #f1f5f9; /* Fond général du site pour faire ressortir vos modules blancs */
+    background-color: #f1f5f9;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Votre barre latérale aux couleurs corporatives */
+/* --- Barre Latérale (Sidebar) --- */
 .sidebar {
-    background-color: var(--primary-color) !important; /* Force le Bleu foncé Parker */
+    width: var(--sidebar-width);
+    background-color: var(--primary-color) !important; /* Force le Bleu foncé */
+    color: white;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    z-index: 100;
 }
 
-/* Votre bouton de téléchargement aux couleurs Parker */
+.sidebar .title {
+    color: #e2e8f0; /* Un gris très clair plus moderne pour le sous-titre */
+}
+
+.contact-item i {
+    color: var(--parker-yellow) !important; /* Les icônes de contact en Jaune Parker pour ressortir sur le bleu foncé */
+}
+
+/* Bouton de téléchargement */
 .download-btn {
-    background-color: var(--accent-color); /* Bleu clair Parker par défaut */
-    color: white;
-    padding: 0.8rem 1.6rem;
+    background-color: var(--accent-color) !important; /* Bleu clair */
+    color: white !important;
+    padding: 0.8rem 1.5rem;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.25s ease;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: auto;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* Changement de couleur dynamique au survol avec le Jaune Parker */
 .download-btn:hover {
-    background-color: var(--parker-yellow);
-    color: var(--primary-color); /* Le texte passe en bleu foncé pour rester parfaitement lisible sur le jaune */
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    background-color: var(--parker-yellow) !important;
+    color: var(--primary-color) !important; /* Texte en bleu foncé sur fond jaune */
+    transform: translateY(-2px);
 }
 
-/* Optionnel : La boîte de surbrillance du module Results */
+/* --- Contenu Principal (Main Content) --- */
+.main-content {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    padding: 3rem;
+    max-width: 1000px;
+}
+
+section {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+}
+
+/* Titres de sections (Profile, Experience, etc.) */
+.section-title {
+    font-size: 1.5rem;
+    color: var(--primary-color) !important; /* Titre en Bleu foncé */
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--parker-yellow) !important; /* Barre sous le titre en Jaune Parker */
+}
+
+.section-title i {
+    color: var(--accent-color) !important; /* Icône du titre en Bleu clair */
+}
+
+/* Encadré du module Results */
 .highlight-box {
-    background-color: #f8fafc;
-    border-left: 4px solid var(--parker-yellow); /* Rappel subtil du Jaune Parker sur le bord gauche */
+    background-color: var(--light-bg);
+    border-left: 4px solid var(--accent-color) !important; /* Bordure en Bleu clair Parker */
     padding: 1.5rem;
     border-radius: 0 8px 8px 0;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Frise Chronologique (Timeline & Experience) --- */
+.timeline::before {
+    background-color: #cbd5e1; /* Ligne verticale de la frise plus visible */
+}
+
+.timeline-item::before {
+    background-color: var(--parker-yellow) !important; /* Points de la frise en Jaune Parker */
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px rgba(0, 130, 196, 0.2);
+}
+
+.timeline-role {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--primary-color) !important; /* Rôle en Bleu foncé */
+}
+
+.timeline-company {
+    color: var(--accent-color) !important; /* Entreprise en Bleu clair */
+    font-weight: 500;
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Gestion du responsive pour les mobiles */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        position: relative;
+        padding: 2rem 1rem;
+    }
+    .main-content {
+        margin-left: 0;
+        padding: 1.5rem;
+    }
 }
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-b); font-size: 15px; line-height: 1.65; color: var(--gray-dk); background: var(--gray-lt); min-height: 100vh; }
