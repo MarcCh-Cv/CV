@@ -9,15 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+CSS
+
 :root {
     /* Vos couleurs officielles Parker Hannifin */
     --primary-color: #003463;     /* Bleu foncé Parker */
-    --secondary-color: #334155;   /* Gris de texte secondaire */
+    --secondary-color: #34495e;   /* Bleu-gris de votre structure d'origine */
     --accent-color: #0082c4;      /* Bleu clair Parker */
-    --parker-yellow: #fdbd13;     /* Jaune Parker */
-    --text-color: #334155;        /* Gris confort de lecture */
-    --light-bg: #f8fafc;          
+    --text-color: #333;           /* Votre couleur de texte d'origine */
+    --light-bg: #f8f9fa;          /* Votre fond gris d'origine */
+    --parker-yellow: #fdbd13;     /* Jaune Parker pour les accents et les survols */
     --sidebar-width: 280px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -25,15 +33,15 @@ body {
     color: var(--text-color);
     display: flex;
     min-height: 100vh;
-    background-color: #f1f5f9;
+    background-color: #f0f2f5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- Barre Latérale (Sidebar) --- */
+/* Sidebar Styling */
 .sidebar {
     width: var(--sidebar-width);
-    background-color: var(--primary-color) !important; /* Force le Bleu foncé */
+    background-color: var(--primary-color); /* Bleu foncé Parker */
     color: white;
     position: fixed;
     top: 0;
@@ -47,23 +55,68 @@ body {
     z-index: 100;
 }
 
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid var(--accent-color); /* Cercle en Bleu clair Parker */
+    margin-bottom: 1.5rem;
+    object-fit: cover;
+}
+
+.sidebar h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
 .sidebar .title {
-    color: #e2e8f0; /* Un gris très clair plus moderne pour le sous-titre */
+    font-size: 0.9rem;
+    color: #bdc3c7;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-info {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
 }
 
 .contact-item i {
-    color: var(--parker-yellow) !important; /* Les icônes de contact en Jaune Parker pour ressortir sur le bleu foncé */
+    margin-right: 1rem;
+    color: var(--parker-yellow); /* Les icônes passent en jaune pour ressortir sur le bleu */
+    width: 20px;
+    text-align: center;
 }
 
-/* Bouton de téléchargement */
+.contact-item a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-item a:hover {
+    color: var(--parker-yellow);
+}
+
 .download-btn {
-    background-color: var(--accent-color) !important; /* Bleu clair */
-    color: white !important;
+    background-color: var(--accent-color); /* Fond Bleu clair Parker */
+    color: white;
     padding: 0.8rem 1.5rem;
-    border-radius: 6px;
+    border-radius: 25px;
     text-decoration: none;
     font-weight: 500;
-    transition: all 0.25s ease;
+    transition: all 0.3s;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -72,12 +125,12 @@ body {
 }
 
 .download-btn:hover {
-    background-color: var(--parker-yellow) !important;
-    color: var(--primary-color) !important; /* Texte en bleu foncé sur fond jaune */
+    background-color: var(--parker-yellow); /* Survol en Jaune Parker */
+    color: var(--primary-color);          /* Évite le texte blanc illisible sur fond jaune */
     transform: translateY(-2px);
 }
 
-/* --- Contenu Principal (Main Content) --- */
+/* Main Content Styling */
 .main-content {
     margin-left: var(--sidebar-width);
     flex: 1;
@@ -88,15 +141,14 @@ body {
 section {
     background: white;
     padding: 2.5rem;
-    border-radius: 12px;
+    border-radius: 10px;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-/* Titres de sections (Profile, Experience, etc.) */
 .section-title {
     font-size: 1.5rem;
-    color: var(--primary-color) !important; /* Titre en Bleu foncé */
+    color: var(--primary-color); /* Titre en Bleu foncé Parker */
     margin-bottom: 1.5rem;
     position: relative;
     padding-bottom: 0.5rem;
@@ -110,53 +162,94 @@ section {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 60px;
+    width: 50px;
     height: 3px;
-    background-color: var(--parker-yellow) !important; /* Barre sous le titre en Jaune Parker */
+    background-color: var(--parker-yellow); /* Ligne de soulignement en Jaune Parker */
 }
 
 .section-title i {
-    color: var(--accent-color) !important; /* Icône du titre en Bleu clair */
+    color: var(--accent-color); /* Icônes de titre en Bleu clair Parker */
 }
 
-/* Encadré du module Results */
+p {
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
 .highlight-box {
     background-color: var(--light-bg);
-    border-left: 4px solid var(--accent-color) !important; /* Bordure en Bleu clair Parker */
+    border-left: 4px solid var(--accent-color); /* Bordure en Bleu clair Parker */
     padding: 1.5rem;
     border-radius: 0 8px 8px 0;
     margin-bottom: 1.5rem;
 }
 
-/* --- Frise Chronologique (Timeline & Experience) --- */
+/* Timeline Styling */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
 .timeline::before {
-    background-color: #cbd5e1; /* Ligne verticale de la frise plus visible */
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e0e0e0;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
 }
 
 .timeline-item::before {
-    background-color: var(--parker-yellow) !important; /* Points de la frise en Jaune Parker */
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 0.25rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--parker-yellow); /* Points de la frise en Jaune Parker */
     border: 3px solid white;
-    box-shadow: 0 0 0 3px rgba(0, 130, 196, 0.2);
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 3px rgba(0, 130, 196, 0.2); /* Halo en Bleu clair Parker */
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .timeline-role {
     font-weight: 600;
     font-size: 1.1rem;
-    color: var(--primary-color) !important; /* Rôle en Bleu foncé */
+    color: var(--primary-color); /* Rôle en Bleu foncé Parker */
 }
 
 .timeline-company {
-    color: var(--accent-color) !important; /* Entreprise en Bleu clair */
+    color: var(--accent-color); /* Entreprise en Bleu clair Parker */
     font-weight: 500;
 }
 
 .timeline-date {
     font-size: 0.9rem;
-    color: #64748b;
+    color: #7f8c8d;
     font-weight: 500;
 }
 
-/* Gestion du responsive pour les mobiles */
+/* Responsive Design */
 @media (max-width: 768px) {
     body {
         flex-direction: column;
@@ -169,6 +262,11 @@ section {
     .main-content {
         margin-left: 0;
         padding: 1.5rem;
+    }
+    .timeline-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
     }
 }
 html { scroll-behavior: smooth; }
